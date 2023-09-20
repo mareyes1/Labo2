@@ -14,6 +14,7 @@ Si el proceso sí existe, se procede a extraer la información solicitada hacien
 Los resultados de los comandos señalados se guardan en variables que se imprimen en pantalla con la indicación de a qué corresponden en cada caso, por medio del comando echo.
 - El script se ejecuta con: './enunciado1.sh <PID>', donde los PID de prueba se pueden obtener con el comando 'ps'.
 - Se debe recordar dar permisos de ejecución al script por medio de 'chmod +x enunciado1.sh'.
+![Resultados script enunciado 1](https://raw.githubusercontent.com/mareyes1/Labo2/main/resultados_enunciado1.png)
 ## Enunciado 2: Monitoreo de un proceso
 La solución implementada para automatizar el monitoreo de un proceso, recibiendo el nombre de éste y el comando para ejecutarlo, de forma que se revise periódicamente el estado del proceso y si se cierra volver a levantarlo, consistió en lo siguiente:
 - Se utiliza el comando pgrep, el cual busca procesos en ejecución, para esto se usa la opción -x que busca por nombre exacto, de la forma: 'pgrep -x <NOMBRE>'. Con el nombre pasado por línea de comando, esta condición se evalúa y si es verdadera mediante un if se reporta en pantalla que el proceso está en ejecución.
@@ -30,4 +31,8 @@ Se resuelve el monitoreo de consumo de CPU y memoria de la siguiente forma:
 - Por medio de un ciclo while que se ejecuta mientras el proceso exista, se evalua dicha condición mediante el comando 'ps -p <PID>'.
 - Mientras el proceso exista se extrae la información: primero con el comando date sugerido se obtiene el "timestamp" con la hora exacta de la muestra, y posteriormente el consumo de CPU y memoria de la misma forma que en el enunciado 1, con el comando 'ps -o' y con -p indicando el PID; estos valores se almacenan en variables que luego son vertidas en el logfile creado, por debajo del encabezado incialmente puesto, esto por medio del operador '>>' que agrega al final de un archivo.
 - Se utiliza el comando sleep para esperar para la siguiente muestra por medio de una variable de $periodicidad definida afuera para no "hardcodear" el valor de muestre dentro del while.
-- Para lo correspondiente a la gráfica con gnuplot se investigó acerca del código necesario, pero se presetaron errores a la hora de generar el archivo PNG pretendido. Se agrega el código que no está generando errores al correr.
+- Para lo correspondiente a la gráfica con gnuplot se investigó acerca del código necesario, pero se presetaron errores a la hora de generar el archivo PNG pretendido. Se agrega el código que no está generando errores al correr. Se continuará revisando el código para adquirir el conocimiento.
+- El código se prueba con el script prueba_enunciado_3.sh que consiste en un sleep 1. Este proceso se debe matar para salir.
+- La información se registra correctamente en el logfile.
+## Enunciado 4: Scripting y servicios
+Para efectos del presente informe, la última parte del laboratorio no pudo ser concluída en tiempo por lo que no se incluye. Sin embargo, el ejercicio será abordado fuera de tiempo con el fin de adquirir los conocimientos necesarios y no generar vacíos en la compresnsión de la materia del curso.
