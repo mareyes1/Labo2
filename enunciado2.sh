@@ -1,5 +1,12 @@
 #!/bin/bash
 
+function detener_script { #función para detener script controladamente al usar Ctrl+C para "matarlo"
+	echo "Deteniendo monitoreo de proceso..."
+	exit 0
+}
+
+trap detener_script SIGINT SIGTERM #manejo de señales para detener el script de forma controlada
+
 if [ $# -ne 2 ]; then #verifica que se pasen 2 parámetros
 	echo "Uso: $0 <nobre del proceso> <comando para ejecutarlo>" #mensaje de error sobre uso del script
 	exit 1 #salida con código de error estándar
