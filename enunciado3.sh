@@ -19,3 +19,13 @@ while ps -p $pid > /dev/null; do #mientras el proceso exista se ejecuta ciclo in
 	echo "$tiempo $uso_cpu $uso_mem" >> "$logfile"
 	sleep $periodicidad
 done
+
+gnuplot <<- EOF
+	set terminal png
+	set output "uso_recursos.png"
+	set title "Histórico de consumo de CPU y de memoria"
+	set xlabel "Hora"
+	set ylabel "%"
+	plot "$logfile" using 1:2 with lines title "CPU", "$logfile" using 1:3 with lines title "MEM"
+EOF
+
