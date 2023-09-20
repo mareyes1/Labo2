@@ -35,4 +35,13 @@ Se resuelve el monitoreo de consumo de CPU y memoria de la siguiente forma:
 - El código se prueba con el script prueba_enunciado_3.sh que consiste en un sleep 1. Este proceso se debe matar para salir.
 - La información se registra correctamente en el logfile.
 ## Enunciado 4: Scripting y servicios
-Para efectos del presente informe, la última parte del laboratorio no pudo ser concluída en tiempo por lo que no se incluye. Sin embargo, el ejercicio será abordado fuera de tiempo con el fin de adquirir los conocimientos necesarios y no generar vacíos en la compresnsión de la materia del curso.
+- Se monitorean los cambios en el directorio actual, i.e. './'
+- Se crea un script en bash (enunciado4.sh) el cual por medio del comando inotifywait espera eventos, con la opción -e se le especifica cuáles eventos "escuche" en particular. En el script se ejecuta el comando inotififywait -e create,modify,delete -r ./ en un bucle infinito mediante un 'while true; do' y la salida se redirecciona al logfile previamente creado en el path /var/log que convencionalmente se usa para este fin. Cada vez que se detecta un cambio se agrega la fecha con 'date'.
+- Se crea un servicio en /etc/systemd/system/monitoreo-lab2.service con base en el ejemplo dado.
+- El servicio se debe habilitar con: sudo systemctl enable monitoreo-lab2.service
+![Resultados script enunciado 2](https://raw.githubusercontent.com/mareyes1/Labo2/main/monitoreo-lab2.service.png)
+- Luego se debe iniciar con: sudo systemctl start monitoreo-lab2.service
+- Finalmente, se verifica el estado del servicio siempre con 'systemctl': sudo systemctl status monitoreo-lab2.service
+![Resultados script enunciado 2](https://raw.githubusercontent.com/mareyes1/Labo2/main/service_status.png)
+- La funcionalidad del comando inotifywait utilizado en el script de bash se verifica antes y después de implementar el servicio, por medio del logfile. Se elige el directorio actual para monitorear los cambios normales que ocurren mientras se trabaja, y también se crean archivos "dummy" para verificar la ejecución.
+![Resultados script enunciado 2](https://raw.githubusercontent.com/mareyes1/Labo2/main/log_detectar_cambios.png)
